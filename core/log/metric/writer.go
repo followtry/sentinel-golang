@@ -299,10 +299,10 @@ func (d *DefaultMetricLogWriter) initialize() error {
 		return nil
 	}
 	ts := util.CurrentTimeMillis()
+	d.latestOpSec = int64(ts / 1000)
 	if err := d.rollToNextFile(ts); err != nil {
 		return errors.Wrap(err, "failed to initialize metric log writer")
 	}
-	d.latestOpSec = int64(ts / 1000)
 	return nil
 }
 
